@@ -197,7 +197,10 @@ Si lo copiaste en `C:\wamp64\www\sistema_escolar` y te aparece **Not Found**, si
    - Raíz del proyecto (`sistema_escolar/.htaccess`)
    - Carpeta pública (`sistema_escolar/public/.htaccess`)
 
-5. Si usas VirtualHost, apunta el `DocumentRoot` a `.../sistema_escolar/public`.
+5. Si sigues en subcarpeta (`/sistema_escolar`) define variable de entorno Apache/PHP:
+   - `APP_BASE_URL=/sistema_escolar`
+
+6. Si usas VirtualHost, apunta el `DocumentRoot` a `.../sistema_escolar/public`.
 
 Ejemplo de VirtualHost:
 

@@ -1,6 +1,6 @@
 <div class="card border-0 shadow-sm">
     <div class="card-body p-4">
-        <a href="/dashboard" class="btn btn-link p-0 mb-3">← Volver al panel</a>
+        <a href="<?= e(app_url('/dashboard')) ?>" class="btn btn-link p-0 mb-3">← Volver al panel</a>
         <h1 class="h3"><i class="bi <?= e($module['icon']) ?>"></i> <?= e($module['title']) ?></h1>
         <p class="text-muted"><?= e($module['desc']) ?></p>
 

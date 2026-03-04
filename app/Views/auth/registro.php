@@ -1,7 +1,7 @@
 <div class="row justify-content-center"><div class="col-md-7 col-lg-6"><div class="card shadow-sm border-0"><div class="card-body p-4">
 <h1 class="h4 mb-3">Registro por DNI institucional</h1>
 <?php if (!empty($_SESSION['error'])): ?><div class="alert alert-danger"><?= e($_SESSION['error']); unset($_SESSION['error']); ?></div><?php endif; ?>
-<form method="post" action="/registro">
+<form method="post" action="<?= e(app_url('/registro')) ?>">
 <input type="hidden" name="_csrf" value="<?= e($csrf) ?>">
 <div class="mb-3"><label class="form-label">DNI (8 dígitos)</label><input class="form-control" name="dni" pattern="\d{8}" required></div>
 <div class="mb-3"><label class="form-label">Correo</label><input type="email" class="form-control" name="email" required></div>

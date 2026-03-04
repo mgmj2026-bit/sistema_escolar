@@ -30,7 +30,7 @@ final class Auth
 
     public static function user(): ?array { return $_SESSION['user'] ?? null; }
     public static function check(): bool { return isset($_SESSION['user']); }
-    public static function requireAuth(): void { if (!self::check()) { header('Location: /login'); exit; } }
+    public static function requireAuth(): void { if (!self::check()) { header('Location: ' . app_url('/login')); exit; } }
 
     public static function requireRoles(array $roles): void
     {

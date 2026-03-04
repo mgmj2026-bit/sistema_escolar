@@ -35,6 +35,8 @@ Plataforma en **PHP + MySQL + Bootstrap** con arquitectura MVC, RBAC en español
 - Rate limiting.
 - Auditoría en BD.
 
+- Compatibilidad con subcarpetas en Apache/WAMP mediante `APP_BASE_URL` (evita `404 - Ruta no encontrada`).
+
 ## Instalación rápida
 
 ```bash

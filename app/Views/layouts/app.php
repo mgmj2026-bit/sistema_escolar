@@ -10,13 +10,13 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4"><div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="/dashboard">🎓 Sistema Escolar Inteligente</a>
+    <a class="navbar-brand fw-bold" href="<?= e(app_url('/dashboard')) ?>">🎓 Sistema Escolar Inteligente</a>
     <?php if (!empty($_SESSION['user'])): ?>
         <div class="d-flex gap-2 align-items-center">
-            <a class="btn btn-sm btn-light" href="/asistencia/personal">Asistencia personal</a>
-            <a class="btn btn-sm btn-light" href="/asistencia/mi">Mi asistencia</a>
+            <a class="btn btn-sm btn-light" href="<?= e(app_url('/asistencia/personal')) ?>">Asistencia personal</a>
+            <a class="btn btn-sm btn-light" href="<?= e(app_url('/asistencia/mi')) ?>">Mi asistencia</a>
             <span class="text-white small"><?= e($_SESSION['user']['name']) ?></span>
-            <form action="/logout" method="post"><button class="btn btn-sm btn-warning">Salir</button></form>
+            <form action="<?= e(app_url('/logout')) ?>" method="post"><button class="btn btn-sm btn-warning">Salir</button></form>
         </div>
     <?php endif; ?>
 </div></nav>

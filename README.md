@@ -1,32 +1,39 @@
 # Sistema Escolar Inteligente Seguro y Escalable
 
-Plataforma en **PHP + MySQL + Bootstrap** con arquitectura MVC, roles en español, seguridad reforzada y base para crecimiento empresarial.
+Plataforma en **PHP + MySQL + Bootstrap** con arquitectura MVC, RBAC en español, seguridad reforzada y base empresarial.
 
-## Mejoras implementadas
+## Implementado en esta versión
 
 - RBAC por roles: director, subdirector, secretaria, auxiliar, docente, estudiante y padre.
-- Registro con **verificación por correo** (token) antes de permitir login.
-- Notificación por correo al verificar cuenta y al cambiar contraseña.
-- Chat privado con reglas de permiso por rol y contactos agrupados por roles.
-- Filtro de chat docente -> estudiantes por secciones que sí enseña.
-- Asistencia de estudiantes (docente) separada de asistencia de personal.
-- Estudiante solo visualiza su asistencia (solo lectura).
-- Reportes exportables CSV (compatibles con Excel) y opción de impresión a PDF.
+- Registro **solo por DNI existente** en `personas_institucionales`.
+- Al registrarse, el rol se asigna automáticamente desde padrón institucional por DNI.
+- Verificación de cuenta por correo antes del primer acceso.
+- Login con **CAPTCHA alfanumérico** (con botón de lectura por voz).
+- Registro con **CAPTCHA alfanumérico** (con botón de lectura por voz).
+- Login con **2FA por correo** (código de 6 dígitos).
+- Rate limiting para intentos de login/registro.
+- Auditoría de eventos de seguridad (registro, login fallido/exitoso, 2FA, cambio de contraseña).
+- Chat privado por permisos y contactos agrupados por rol.
+- Asistencia separada: estudiantes y personal.
+- Reportes CSV compatibles con Excel (imprimibles a PDF desde navegador).
 
-## Reglas de chat aplicadas
+## Flujo de registro por DNI
 
-- Docente: estudiantes de sus secciones, docentes, director, secretaria y auxiliar (no padres).
-- Estudiante: docentes de sus cursos, auxiliar y subdirector.
-- Padre: subdirector, auxiliar, secretaria y docentes que enseñan a su hijo.
-- Director/Subdirector/Secretaria/Auxiliar: acceso amplio para comunicación operativa.
+1. Usuario ingresa DNI + correo + contraseña + CAPTCHA.
+2. El sistema valida que el DNI exista en `personas_institucionales`.
+3. Si existe, crea la cuenta con el rol institucional asignado al DNI.
+4. Envía correo de verificación.
+5. Al verificar, puede iniciar sesión.
 
 ## Seguridad aplicada
 
-- Cabeceras de hardening y CSP.
-- Protección CSRF.
+- Cabeceras de hardening + CSP.
+- CSRF en formularios.
 - Consultas preparadas PDO.
-- Control de acceso por rol.
-- Sesiones regeneradas en login.
+- Sesiones regeneradas.
+- 2FA por correo.
+- Rate limiting.
+- Auditoría en BD.
 
 ## Instalación rápida
 

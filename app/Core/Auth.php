@@ -8,15 +8,17 @@ use App\Models\User;
 
 final class Auth
 {
-    public static function attempt(string $email, string $password): bool
+    public static function attemptPassword(string $email, string $password): ?array
     {
-        $userModel = new User();
-        $user = $userModel->findByEmail($email);
-
+        $user = (new User())->findByEmail($email);
         if (!$user || (int) $user['is_verified'] !== 1 || !Security::verifyPassword($password, $user['password_hash'])) {
-            return false;
+            return null;
         }
+        return $user;
+    }
 
+    public static function loginUser(array $user): void
+    {
         session_regenerate_id(true);
         $_SESSION['user'] = [
             'id' => $user['id'],
@@ -24,28 +26,16 @@ final class Auth
             'email' => $user['email'],
             'role' => $user['role'],
         ];
-
-        return true;
     }
 
     public static function user(): ?array { return $_SESSION['user'] ?? null; }
     public static function check(): bool { return isset($_SESSION['user']); }
-
-    public static function requireAuth(): void
-    {
-        if (!self::check()) {
-            header('Location: /login');
-            exit;
-        }
-    }
+    public static function requireAuth(): void { if (!self::check()) { header('Location: /login'); exit; } }
 
     public static function requireRoles(array $roles): void
     {
         self::requireAuth();
-        if (!in_array((string) ($_SESSION['user']['role'] ?? ''), $roles, true)) {
-            http_response_code(403);
-            exit('No autorizado.');
-        }
+        if (!in_array((string) ($_SESSION['user']['role'] ?? ''), $roles, true)) { http_response_code(403); exit('No autorizado.'); }
     }
 
     public static function logout(): void

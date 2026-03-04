@@ -11,6 +11,8 @@ return [
     ['GET', '/', [DashboardController::class, 'index']],
     ['GET', '/login', [AuthController::class, 'showLogin']],
     ['POST', '/login', [AuthController::class, 'login']],
+    ['GET', '/2fa', [AuthController::class, 'show2fa']],
+    ['POST', '/2fa', [AuthController::class, 'verify2fa']],
     ['GET', '/registro', [AuthController::class, 'showRegistro']],
     ['POST', '/registro', [AuthController::class, 'registro']],
     ['GET', '/verificar', [AuthController::class, 'verificar']],

@@ -178,6 +178,48 @@ tail -f storage/logs/correos.log
 
 ---
 
+
+## Configuración específica para WAMP (Windows)
+
+Si lo copiaste en `C:\wamp64\www\sistema_escolar` y te aparece **Not Found**, sigue esto exactamente:
+
+1. Activa módulos Apache en WAMP:
+   - `rewrite_module`
+   - `headers_module`
+
+2. Reinicia todos los servicios de WAMP.
+
+3. Entra por URL correcta:
+   - Opción A (con reescritura del proyecto): `http://localhost/sistema_escolar/`
+   - Opción B (directa al front): `http://localhost/sistema_escolar/public/`
+
+4. Verifica que exista `.htaccess` en:
+   - Raíz del proyecto (`sistema_escolar/.htaccess`)
+   - Carpeta pública (`sistema_escolar/public/.htaccess`)
+
+5. Si usas VirtualHost, apunta el `DocumentRoot` a `.../sistema_escolar/public`.
+
+Ejemplo de VirtualHost:
+
+```apache
+<VirtualHost *:80>
+    ServerName sistema-escolar.local
+    DocumentRoot "c:/wamp64/www/sistema_escolar/public"
+    <Directory "c:/wamp64/www/sistema_escolar/public">
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+Luego agrega en `C:\Windows\System32\drivers\etc\hosts`:
+
+```txt
+127.0.0.1   sistema-escolar.local
+```
+
+Y reinicia WAMP.
+
 ## 9) Solución de problemas
 
 ### Error de conexión a MySQL

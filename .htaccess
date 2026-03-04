@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si la URL ya apunta a /public, no reescribir de nuevo
+    RewriteCond %{REQUEST_URI} !^/public/
+
+    # Enviar todo al front public del proyecto
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

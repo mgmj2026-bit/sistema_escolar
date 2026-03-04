@@ -48,3 +48,6 @@ Abrir: `http://localhost:8000/login`
 ## Documentación completa
 
 Para instalación y documentación detallada paso a paso, revisa **`LEAME.md`**.
+
+
+> Si usas WAMP y te sale **Not Found**, revisa la sección **Configuración específica para WAMP (Windows)** en `LEAME.md`.
